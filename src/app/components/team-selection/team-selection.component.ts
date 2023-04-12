@@ -39,7 +39,6 @@ export class TeamSelectionComponent implements OnInit {
 
   getLast12Days(): void {
     const todayDate: Date = new Date();
-    console.log(todayDate);
     for (let i = 0; i < 12; i++) {
       const date: Date = new Date(
         todayDate.getFullYear(),
@@ -49,7 +48,6 @@ export class TeamSelectionComponent implements OnInit {
       const dateString: string = date.toISOString().slice(0, 10);
       this.last12Days.push(dateString);
     }
-    console.log(this.last12Days);
   }
 
   trackTeam(): void {
