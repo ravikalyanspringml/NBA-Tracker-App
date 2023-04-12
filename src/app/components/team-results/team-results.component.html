@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ cardDetails.name }} [{{ cardDetails.abbreviation }}]
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        {{ cardDetails.conference + 'ern' }} conference
+      </h6>
+      <hr />
+      <div class="card-text">
+        <p>Result of past 12 days:</p>
+        <div class="" *ngFor="let item of resultScores">
+          <b>{{ item?.homeTeam }}</b>
+          {{ item?.homeTeamScore }} - {{ item?.visitorTeamScore}}
+          <b>{{ item?.visitorTeam }}</b>
+        </div>
+        <button type="button" class="btn btn-success" id="backBtn" routerLink="/teamSelection">
+          << Back to all team stats
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

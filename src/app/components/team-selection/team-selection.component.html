@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="selection">
+    <select class="form-select" id="teamSelect" [(ngModel)]="selectedTeam">
+      <option disabled>Select a team</option>
+      <option *ngFor="let team of teams" [value]="team.id">{{ team.full_name }}</option>
+    </select>
+    <button type="button" class="btn btn-primary" id="trackBtn" (click)="trackTeam()">Track</button>
+  </div>
+  <div class="cards">
+    <div class="card" *ngFor="let card of cardsList; let i=index">
+      <div class="card-body">
+        <div class="heading">
+          <div class="typography">
+            <h5 class="card-title">{{card?.name}} [{{card?.abbreviation}}]</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{card?.conference + 'ern'}} conference</h6>
+          </div>
+          <button type="button" class="btn-close" id="remove{{card?.abbreviation}}" aria-label="Close" (click)="removeCard(i)"></button>
+        </div>
+        <hr>
+        <div class="card-text">
+          <div>
+            <p>Result of past 12 days:</p>
+            <div>
+              <span *ngFor="let result of card?.winOrLoss" class="result"
+                [ngStyle]="{'background-color': result=='W' ? 'green' : 'red' }">{{result}}</span>
+            </div>
+            <p>Average pts scored: {{card?.avgTeamScored}}</p>
+            <p>Average pts conceded: {{card?.avgTeamConceded}}</p>
+            <button type="button" class="btn btn-success" id="nextBtn" (click)="nextPage(card)">See game results >></button>
+          </div>
+          <div>
+            <img src="https://interstate21.com/nba-logos/{{card?.abbreviation}}.png" alt="logo" height="100px"
+              width="100px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
