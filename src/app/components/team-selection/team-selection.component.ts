@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  ApiService,
   ICardsList,
   IDateID,
   IGame,
+  IGamesDetails,
   ITeamsList,
-} from 'src/app/services/api.service';
+  TeamResponse,
+} from 'src/app/utils/types';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-team-selection',
@@ -31,9 +33,8 @@ export class TeamSelectionComponent implements OnInit {
   }
 
   getTeams(): void {
-    this.api.teamList().subscribe((resp: Object) => {
-      const TeamDataResponse = resp as { data: ITeamsList[] };
-      this.teams = TeamDataResponse.data;
+    this.api.teamList().subscribe((resp: TeamResponse) => {
+      this.teams = resp.data;
     });
   }
 
@@ -48,7 +49,6 @@ export class TeamSelectionComponent implements OnInit {
       const dateString: string = date.toISOString().slice(0, 10);
       this.last12Days.push(dateString);
     }
-    console.log(this.last12Days)
   }
 
   trackTeam(): void {
@@ -71,7 +71,7 @@ export class TeamSelectionComponent implements OnInit {
   }
 
   getGameResults(data: IDateID): void {
-    this.api.lastGames(data).subscribe((resp: Object) => {
+    this.api.lastGames(data).subscribe((resp: IGamesDetails) => {
       let name: string = '';
       let abbreviation: string = '';
       let conference: string = '';
@@ -84,9 +84,9 @@ export class TeamSelectionComponent implements OnInit {
       let teamScored: number = 0;
       let teamConceded: number = 0;
 
-      const cardDataResponse = resp as { data: IGame[] };
+      // const cardDataResponse = resp as { data: IGame[] };
 
-      cardDataResponse.data.forEach((value: IGame) => {
+      resp.data.forEach((value: IGame) => {
         visitorTeamScore.push(value.visitor_team_score);
         homeTeamScore.push(value.home_team_score);
         homeTeam.push(value.home_team.abbreviation);
@@ -126,10 +126,8 @@ export class TeamSelectionComponent implements OnInit {
       });
 
       this.cardsList.push({
-        avgTeamScored: Math.round(teamScored / cardDataResponse.data.length),
-        avgTeamConceded: Math.round(
-          teamConceded / cardDataResponse.data.length
-        ),
+        avgTeamScored: Math.round(teamScored / resp.data.length),
+        avgTeamConceded: Math.round(teamConceded / resp.data.length),
         winOrLoss: tempWinOrLoss,
         name: name,
         conference: conference,

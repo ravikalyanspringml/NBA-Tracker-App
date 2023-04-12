@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IResultScores, ICardDetails } from 'src/app/services/api.service';
+import { IResultScores, ICardDetails } from 'src/app/utils/types';
 
 @Component({
   selector: 'app-team-results',
@@ -41,8 +41,8 @@ export class TeamResultsComponent implements OnInit {
       let temp: IResultScores = {
         homeTeam: '',
         visitorTeam: '',
-        homeTeamScore: 0,
-        visitorTeamScore: 0,
+        homeTeamScore: '',
+        visitorTeamScore: '',
       };
       temp['homeTeam'] = this.cardDetails.results.homeTeam[i];
       temp['visitorTeam'] = this.cardDetails.results.visitorTeam[i];
