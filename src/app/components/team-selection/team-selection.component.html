@@ -27,7 +27,7 @@
             </div>
             <p>Average pts scored: {{card?.avgTeamScored}}</p>
             <p>Average pts conceded: {{card?.avgTeamConceded}}</p>
-            <button type="button" class="btn btn-success" id="nextBtn" (click)="nextPage(card)">See game results
+            <button type="button" class="btn btn-success" id="results{{card?.abbreviation}}" (click)="nextPage(card)">See game results
               >></button>
           </div>
           <div>
