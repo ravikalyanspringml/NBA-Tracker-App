@@ -43,11 +43,12 @@ export class TeamSelectionComponent implements OnInit {
       const date: Date = new Date(
         todayDate.getFullYear(),
         todayDate.getMonth(),
-        todayDate.getDate() - (i - 1)
+        todayDate.getDate() - i
       );
       const dateString: string = date.toISOString().slice(0, 10);
       this.last12Days.push(dateString);
     }
+    console.log(this.last12Days)
   }
 
   trackTeam(): void {
