@@ -90,13 +90,13 @@ export class ApiService {
     'X-RapidAPI-Host': environment.HOST,
   });
 
-  teamList():Observable<Object>{
+  teamList(): Observable<Object> {
     return this.http.get(`${environment.BASE_URL}/teams`, {
       headers: this.header,
     });
   }
 
-  lastGames(data: IDateID):Observable<Object>{
+  lastGames(data: IDateID): Observable<Object> {
     let Params: HttpParams = new HttpParams();
     data.date.forEach((date: string) => {
       Params = Params.append('dates[]', date);

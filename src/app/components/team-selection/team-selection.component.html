@@ -14,7 +14,8 @@
             <h5 class="card-title">{{card?.name}} [{{card?.abbreviation}}]</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{card?.conference + 'ern'}} conference</h6>
           </div>
-          <button type="button" class="btn-close" id="remove{{card?.abbreviation}}" aria-label="Close" (click)="removeCard(i)"></button>
+          <button type="button" class="btn-close" id="remove{{card?.abbreviation}}" aria-label="Close"
+            (click)="removeCard(i)"></button>
         </div>
         <hr>
         <div class="card-text">
@@ -26,7 +27,8 @@
             </div>
             <p>Average pts scored: {{card?.avgTeamScored}}</p>
             <p>Average pts conceded: {{card?.avgTeamConceded}}</p>
-            <button type="button" class="btn btn-success" id="nextBtn" (click)="nextPage(card)">See game results >></button>
+            <button type="button" class="btn btn-success" id="nextBtn" (click)="nextPage(card)">See game results
+              >></button>
           </div>
           <div>
             <img src="https://interstate21.com/nba-logos/{{card?.abbreviation}}.png" alt="logo" height="100px"

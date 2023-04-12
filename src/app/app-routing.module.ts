@@ -7,20 +7,20 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/teamSelection',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'teamSelection',
-    component: TeamSelectionComponent
+    component: TeamSelectionComponent,
   },
   {
     path: 'results/:teamCode',
-    component: TeamResultsComponent
+    component: TeamResultsComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
